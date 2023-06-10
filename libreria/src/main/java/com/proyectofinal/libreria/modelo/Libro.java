@@ -11,7 +11,6 @@ public class Libro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    private String autor;
     private Long isbn;
     private Integer añoDeEdicion;
     private Integer cantidad;
@@ -27,11 +26,10 @@ public class Libro {
 
     public Libro(){}
 
-    public Libro(Long id, String titulo, String autor, Long isbn, Integer añoDeEdicion, Integer cantidad,
+    public Libro(Long id, String titulo, Long isbn, Integer añoDeEdicion, Integer cantidad,
                  String condicion, Collection<Autor> autores) {
         this.id = id;
         this.titulo = titulo;
-        this.autor = autor;
         this.isbn = isbn;
         this.añoDeEdicion = añoDeEdicion;
         this.cantidad = cantidad;
@@ -39,10 +37,9 @@ public class Libro {
         this.autores = autores;
     }
 
-    public Libro(String titulo, String autor, Long isbn, Integer añoDeEdicion, Integer cantidad, String condicion,
+    public Libro(String titulo, Long isbn, Integer añoDeEdicion, Integer cantidad, String condicion,
                  Collection<Autor> autores) {
         this.titulo = titulo;
-        this.autor = autor;
         this.isbn = isbn;
         this.añoDeEdicion = añoDeEdicion;
         this.cantidad = cantidad;
@@ -64,14 +61,6 @@ public class Libro {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
     }
 
     public Long getIsbn() {
