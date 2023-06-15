@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "autores")
@@ -30,15 +31,19 @@ public class Autor {
     @NotNull(message = "Este campo no puede quedar vacío. Si no existe la información, ingrese: 01/01/0001")
     private LocalDate fechaNacimiento;
 
+    @ManyToMany(mappedBy = "autores")
+    private List<Libro> libros;
+
     public Autor() {
     }
 
-    public Autor(Long id, String nombre, String apellido, String lugarDeNacimiento, LocalDate fechaNacimiento) {
+    public Autor(Long id, String nombre, String apellido, String lugarDeNacimiento, LocalDate fechaNacimiento, List<Libro> libros) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.lugarDeNacimiento = lugarDeNacimiento;
         this.fechaNacimiento = fechaNacimiento;
+        this.libros = libros;
     }
 
     public Autor(String nombre, String apellido, String lugarDeNacimiento, LocalDate fechaNacimiento) {
@@ -86,6 +91,14 @@ public class Autor {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public List<Libro> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
     }
 
     @Override

@@ -32,13 +32,22 @@
             <div class="col-md-6">
                 <label for= "autor" class="form-label">Autor</label>
                 <select th:field="*{autores}" id="autor" class="form-select" required>
-                    <option selected value="">Seleccione un autor del listado</option>
+                    <option selected value="">Seleccione una opción del listado</option>
                     <option th:each="autor : ${autores}" th:text="${autor.toString}"
                             th:value="${autor.id}"></option>
                 </select>
             </div>
             <!-- -->
-            <div class="col-12">
+            <div class="col-md-6">
+                <label for= "autor2" class="form-label">Autor 2</label>
+                <select th:field="*{autores}" id="autor2" class="form-select">
+                    <option selected value="">Seleccione una opción del listado</option>
+                    <option th:each="autor : ${autores}" th:text="${autor.toString}"
+                            th:value="${autor.id}"></option>
+                </select>
+            </div>
+            <span>En caso de que tenga más de 2 autores, seleccionar la opción 'Antología'</span>
+            <div class="col-md-6">
                 <label for="isbn" class="form-label">ISBN</label>
                 <input type="text" class="form-control" id="isbn" th:field="*{isbn}"
                        th:errorClass="is-invalid" required>
