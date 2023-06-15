@@ -20,15 +20,14 @@ public class Autor {
     @NotBlank(message = "Debe ingresar un nombre")
     private String nombre;
 
-    @NotBlank(message = "Debe ingresar un apellido")
     private String apellido;
 
-    @NotNull(message = "En caso de no existir esta información, ingrese 'Desconocido'")
+    @NotBlank(message = "Este campo no puede quedar vacío. Si no existe la información, ingrese: Desconocido")
     private String lugarDeNacimiento;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Past(message = "No puede ser una fecha posterior a la actual")
-    @NotNull(message = "En caso de no existir esta información, ingrese 'Desconocido'")
+    @NotNull(message = "Este campo no puede quedar vacío. Si no existe la información, ingrese: 01/01/0001")
     private LocalDate fechaNacimiento;
 
     public Autor() {
@@ -87,5 +86,10 @@ public class Autor {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido;
     }
 }

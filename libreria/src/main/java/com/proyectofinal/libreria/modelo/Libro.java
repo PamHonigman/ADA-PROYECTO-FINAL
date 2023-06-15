@@ -1,6 +1,8 @@
 package com.proyectofinal.libreria.modelo;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @Entity
@@ -12,7 +14,9 @@ public class Libro {
     private Long id;
     private String titulo;
     private Long isbn;
-    private Integer añoDeEdicion;
+
+    @NotNull(message = "En caso de no existir esta infornación, ingrese: Desconocido")
+    private Integer anioDeEdicion;
     private Integer cantidad;
     private String condicion;
 
@@ -26,22 +30,22 @@ public class Libro {
 
     public Libro(){}
 
-    public Libro(Long id, String titulo, Long isbn, Integer añoDeEdicion, Integer cantidad,
+    public Libro(Long id, String titulo, Long isbn, Integer anioDeEdicion, Integer cantidad,
                  String condicion, Collection<Autor> autores) {
         this.id = id;
         this.titulo = titulo;
         this.isbn = isbn;
-        this.añoDeEdicion = añoDeEdicion;
+        this.anioDeEdicion = anioDeEdicion;
         this.cantidad = cantidad;
         this.condicion = condicion;
         this.autores = autores;
     }
 
-    public Libro(String titulo, Long isbn, Integer añoDeEdicion, Integer cantidad, String condicion,
+    public Libro(String titulo, Long isbn, Integer anioDeEdicion, Integer cantidad, String condicion,
                  Collection<Autor> autores) {
         this.titulo = titulo;
         this.isbn = isbn;
-        this.añoDeEdicion = añoDeEdicion;
+        this.anioDeEdicion = anioDeEdicion;
         this.cantidad = cantidad;
         this.condicion = condicion;
         this.autores = autores;
@@ -71,12 +75,12 @@ public class Libro {
         this.isbn = isbn;
     }
 
-    public Integer getAñoDeEdicion() {
-        return añoDeEdicion;
+    public Integer getAnioDeEdicion() {
+        return anioDeEdicion;
     }
 
-    public void setAñoDeEdicion(Integer añoDeEdicion) {
-        this.añoDeEdicion = añoDeEdicion;
+    public void setAnioDeEdicion(Integer anioDeEdicion) {
+        this.anioDeEdicion = anioDeEdicion;
     }
 
     public Integer getCantidad() {

@@ -33,14 +33,14 @@ public class AutorControlador {
         return "lista-autores";
     }
 
-    @GetMapping("/nuevo-autor")
+    @GetMapping("/autores/nuevo")
     public String mostrarFormularioRegistrarAutor(Model modelo){
         modelo.addAttribute("autor", new Autor());
 
         return "agregar-autor";
     }
 
-    @PostMapping("/guardar-autor")
+    @PostMapping("/autores/guardar")
     public String guardarAutor(@Validated Autor autor, BindingResult bindingResult, RedirectAttributes redirect,
                                Model modelo){
 
@@ -51,12 +51,12 @@ public class AutorControlador {
 
         autorServicio.guardarAutor(autor);
 
-        redirect.addFlashAttribute("msgExito", "El autor ha sido añadido exitosamente!");
+        redirect.addFlashAttribute("msgExito", "Autor añadido exitosamente!");
 
-        return "redirect:/lista-autores";
+        return "redirect:/autores";
     }
 
-    @GetMapping("/edicion-de-autor/{id}")
+    @GetMapping("/autores/editar/{id}")
     public String mostrarFormularioEditarAutor(@PathVariable Long id, Model modelo){
         Autor autor = autorServicio.obtenerAutorPorId(id);
         modelo.addAttribute("autor", autor);
@@ -64,7 +64,7 @@ public class AutorControlador {
         return "actualizar-autor";
     }
 
-    @PostMapping("/edicion-de-autor/{id}")
+    @PostMapping("/autores/editar/{id}")
     public String actualizarAutor(@PathVariable Long id, @Validated Autor autor, BindingResult bindingResult,
                                   RedirectAttributes redirect, Model modelo){
 
@@ -82,20 +82,20 @@ public class AutorControlador {
 
         autorServicio.actualizarAutor(autorDB);
 
-        redirect.addFlashAttribute("msgExito", "El autor ha sido modificado exitosamente!");
+        redirect.addFlashAttribute("msgExito", "Autor modificado exitosamente!");
 
-        return "redirect:/lista-autores";
+        return "redirect:/autores";
     }
 
-    @PostMapping("/eliminar-autor/{id}")
+    @PostMapping("/autores/eliminar/{id}")
     public String eliminarAutor(@PathVariable Long id, RedirectAttributes redirect){
         Autor autor = autorServicio.obtenerAutorPorId(id);
 
         autorServicio.eliminarAutor(autor);
 
-        redirect.addFlashAttribute("msgExito", "El autor ha sido eliminado exitosamente!");
+        redirect.addFlashAttribute("msgExito", "Autor eliminado exitosamente!");
 
-        return "redirect:/lista-autores";
+        return "redirect:/autores";
     }
 
 

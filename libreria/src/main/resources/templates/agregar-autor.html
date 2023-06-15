@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Añadir un autor</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/5c6dd94472.js" crossorigin="anonymous"></script>
+
 </head>
-<body>
+<body style="background-image: url('https://wallpaperaccess.com/full/2785813.jpg');
+ background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+<br>
+
+<div class="row justify-content-center">
+    <div class="col-md6 col-lg-6 bg-light border border-secondary border rounded p-4">
+        <div class="mb-4">
+            <h4 style="text-align:center" class="p-3 mb-1 mt-1 bg-success bg-gradient text-dark border rounded">
+                Nuevo Autor&nbsp;<i class="fa-solid fa-user-pen"></i><i class="bi bi-stars"></i></h4>
+        </div>
+    <form class="row g-3" th:action="@{/autores/guardar}" th:object="${autor}" method="post">
+        <div class="col-12">
+            <label for="nombre" class="form-label">Nombre/s</label>
+            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="invalid-feedback"></div>
+        </div>
+        <div class="col-12">
+            <label for="apellido" class="form-label">Apellido/s</label>
+            <input type="text" class="form-control" id="apellido" th:field="*{apellido}">
+        </div>
+        <div class="col-md-6">
+            <label for="placebirth" class="form-label">Lugar de Nacimiento</label>
+            <input type="text" class="form-control" id="placebirth" th:field="*{lugarDeNacimiento}"
+                   th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('lugarDeNacimiento')}" th:errors="*{lugarDeNacimiento}"
+                 class="invalid-feedback"></div>
+        </div>
+        <div class="col-md-6">
+            <label for="datebirth" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="datebirth" th:field="*{fechaNacimiento}"
+                   th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"
+                 class="invalid-feedback"></div>
+        </div>
+
+        <div class="text-end pt-4 mb-3">
+            <button class="btn btn-success text-dark">Guardar
+                <i class="fa-solid fa-user-check"></i></button>
+            <a th:href="@{/autores}" class="btn btn-danger text-dark">Cancelar&nbsp;<i class="fa-solid fa-xmark"></i></a>
+        </div>
+    </form>
+</div>
+</div>
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous">
+</script>
 
 </body>
 </html>
