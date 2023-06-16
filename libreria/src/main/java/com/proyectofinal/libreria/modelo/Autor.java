@@ -105,4 +105,11 @@ public class Autor {
     public String toString() {
         return nombre + " " + apellido;
     }
+
+    public String getNombreCompleto(){
+
+        return nombre + " " + apellido;
+    }
+
+
 }

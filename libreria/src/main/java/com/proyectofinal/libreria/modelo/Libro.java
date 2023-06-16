@@ -107,4 +107,16 @@ public class Libro {
         this.autores = autores;
     }
 
+    /*public String getNombreCompleto(){
+        String nombre = "";
+        String apellido = "";
+
+        for (Autor autorAux : autores) {
+            nombre = autorAux.getNombre();
+            apellido = autorAux.getApellido();
+        }
+
+        return nombre + " " + apellido;
+    }*/
+
 }

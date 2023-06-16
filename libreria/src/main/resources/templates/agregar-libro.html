@@ -46,7 +46,10 @@
                             th:value="${autor.id}"></option>
                 </select>
             </div>
-            <span>En caso de que tenga más de 2 autores, seleccionar la opción 'Antología'</span>
+            <span
+                    class="text-secondary"><small><i>En caso de que tenga más de 2 autores, seleccione la opción
+                'Antología'</i></small></span>
+
             <div class="col-md-6">
                 <label for="isbn" class="form-label">ISBN</label>
                 <input type="text" class="form-control" id="isbn" th:field="*{isbn}"
