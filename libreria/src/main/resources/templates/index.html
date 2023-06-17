@@ -13,14 +13,14 @@
 </head>
 <body style="background-image: url('https://mcdn.wallpapersafari.com/medium/29/23/IHz9xU.jpg');
  background-size: cover; background-repeat: no-repeat; background-position: center;">
-
+<br>
 <div class="container">
     <div th:if="${msgExito != null}" class="alert alert-success alert-dismissible fade show" role="alert">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
         </svg>
-        [[${msgExito}]]
+        &nbsp;[[${msgExito}]]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
@@ -31,7 +31,8 @@
         Lista de Libros</bold>&nbsp;<i class="fa-solid fa-book-open-reader"></i>&nbsp;<i class="bi bi-stars"></i></h2>
 
     <div class="text-center my-3">
-        <a th:href="@{/libros/nuevo}" class="btn btn-light btn-lg"><i class="fa-solid fa-circle-plus"></i>&nbsp;
+        <a th:href="@{/libros/nuevo}" class="btn btn-light btn-lg" onclick="mostrarAlertaAñadirLibro(event)"><i
+                class="fa-solid fa-circle-plus"></i>&nbsp;
             Añadir un libro</a>
     </div>
 
@@ -51,7 +52,12 @@
         <tbody class="table-striped">
         <tr th:each="libro: ${libros}">
             <td th:text="${libro.titulo}"></td>
-            <td th:text="${libro.autores}"></td>
+            <td>
+                   <span th:each="autor, iterStat : ${libro.autores}">
+                       <span th:text="${autor.nombre + ' ' + autor.apellido}"></span>
+                       <span th:if="${iterStat.last} == false">, </span>
+                   </span>
+            </td>
             <td th:text="${libro.anioDeEdicion}"></td>
             <td th:text="${libro.isbn}"></td>
             <td th:text="${libro.cantidad}"></td>
@@ -59,9 +65,9 @@
             <td>
                 <a th:href="@{/libros/editar/}+${libro.id}" class="btn btn-info btn-sm"><i
                         class="bi bi-pencil-square"></i>&nbsp;Editar</a>
-                &nbsp;&nbsp;
+
                 <a href="#" onclick="mostrarAlerta(this)" class="btn btn-secondary btn-sm"><i
-                        class="bi bi-trash3"></i>&nbsp;Eliminar</a>
+                        class="bi bi-trash3"></i></a>
                 <form th:action="@{/libros/eliminar/{id}(id=${libro.id})}" method="post"
                       id="deleteForm"></form>
             </td>
@@ -77,25 +83,46 @@
 
 <script th:inline="javascript">
         function mostrarAlerta(elemento) {
-            swal({title: "¿Estás seguro?",
-  text: "Esta acción no se puede deshacer",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    var form = elemento.nextElementSibling;
-                form.submit();
-    swal("Registro eliminado exitosamente!", {
-      icon: "success",
-    });
-  } else {
-    swal("Ningún registro fue eliminado");
-  }
-});
+            swal({
+                title: "¿Está seguro?",
+                text: "Esta acción no se puede deshacer",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    var form = elemento.nextElementSibling;
+                    form.submit();
+                    swal("Registro eliminado exitosamente!", {
+                    icon: "success",
+                    });
+                } else {
+                    swal("Ningún registro fue eliminado");
+                }
+            });
         }
 </script>
+
+<script th:inline="javascript">
+    function mostrarAlertaAñadirLibro(event) {
+        event.preventDefault();
+        swal({
+            title: "¡Atención!",
+            text: "Antes de añadir un libro, debe haber registrado su autor previamente",
+            icon: "warning",
+            buttons: {
+                cancel: "Cancelar",
+                confirm: "Continuar"
+            },
+        }).then((value) => {
+            if (value) {
+                window.location.href = '/libros/nuevo';
+            }
+        });
+    }
+</script>
+
 
 </body>
 </html>

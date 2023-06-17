@@ -106,10 +106,7 @@ public class Autor {
         return nombre + " " + apellido;
     }
 
-    public String getNombreCompleto(){
 
-        return nombre + " " + apellido;
-    }
 
 
 }

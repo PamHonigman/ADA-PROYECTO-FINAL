@@ -20,7 +20,7 @@ public class Libro {
     private Integer cantidad;
     private String condicion;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "libros_autores",
             joinColumns = @JoinColumn(name = "libros_id", referencedColumnName = "id"),
@@ -106,17 +106,5 @@ public class Libro {
     public void setAutores(Collection<Autor> autores) {
         this.autores = autores;
     }
-
-    /*public String getNombreCompleto(){
-        String nombre = "";
-        String apellido = "";
-
-        for (Autor autorAux : autores) {
-            nombre = autorAux.getNombre();
-            apellido = autorAux.getApellido();
-        }
-
-        return nombre + " " + apellido;
-    }*/
 
 }
