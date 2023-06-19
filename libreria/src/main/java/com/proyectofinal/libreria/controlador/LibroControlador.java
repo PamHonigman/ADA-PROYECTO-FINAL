@@ -62,7 +62,10 @@ public class LibroControlador {
     @GetMapping("/libros/editar/{id}")
     public String mostrarFormularioEditarLibro(@PathVariable Long id, Model modelo){
         Libro libro = libroServicio.obtenerLibroPorId(id);
+        List<Autor> listaAutores = autorServicio.listarTodosLosAutores();
+
         modelo.addAttribute("libro", libro);
+        modelo.addAttribute("autores", listaAutores);
 
         return "actualizar-libro";
     }
