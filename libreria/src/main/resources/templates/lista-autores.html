@@ -43,8 +43,7 @@
                         Añadir
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" th:href="@{/libros/nuevo}">Libro (Ya debe estar registrado
-                            el autor)</a></li>
+                        <li><a class="dropdown-item" th:href="@{/libros/nuevo}" onclick="mostrarAlertaAñadirLibro(event)">Libro</a></li>
                         <li><a class="dropdown-item" th:href="@{/autores/nuevo}">Autor</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Socio</a></li>
@@ -159,6 +158,25 @@
                 }
             });
         }
+</script>
+
+<script th:inline="javascript">
+    function mostrarAlertaAñadirLibro(event) {
+        event.preventDefault();
+        swal({
+            title: "¡Atención!",
+            text: "Antes de añadir un libro, debe haber registrado su autor previamente",
+            icon: "warning",
+            buttons: {
+                cancel: "Cancelar",
+                confirm: "Continuar"
+            },
+        }).then((value) => {
+            if (value) {
+                window.location.href = '/libros/nuevo';
+            }
+        });
+    }
 </script>
 
 </body>

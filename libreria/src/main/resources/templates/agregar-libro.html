@@ -90,6 +90,7 @@
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
             </div>
+
             <div class="col-md-6">
                 <label for= "autor" class="form-label">Autor</label>
                 <select th:field="*{autores}" id="autor" class="form-select" required>
@@ -107,7 +108,7 @@
                 </select>
             </div>
 
-            <span class="text-secondary mb-1">
+            <span class="text-success mb-1">
                 <small><i>En caso de que tenga más de 2 autores, seleccione la opción
                 'Antología'</i></small>
             </span>
