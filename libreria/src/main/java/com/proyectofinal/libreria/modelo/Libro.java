@@ -15,10 +15,9 @@ public class Libro {
     private String titulo;
     private Long isbn;
 
-    @NotNull(message = "En caso de no existir esta infornación, ingrese: Desconocido")
-    private Integer anioDeEdicion;
+    private String anioDeEdicion;
     private Integer cantidad;
-    private String condicion;
+    private Integer condicion;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -30,8 +29,8 @@ public class Libro {
 
     public Libro(){}
 
-    public Libro(Long id, String titulo, Long isbn, Integer anioDeEdicion, Integer cantidad,
-                 String condicion, Collection<Autor> autores) {
+    public Libro(Long id, String titulo, Long isbn, String anioDeEdicion, Integer cantidad,
+                 Integer condicion, Collection<Autor> autores) {
         this.id = id;
         this.titulo = titulo;
         this.isbn = isbn;
@@ -41,7 +40,7 @@ public class Libro {
         this.autores = autores;
     }
 
-    public Libro(String titulo, Long isbn, Integer anioDeEdicion, Integer cantidad, String condicion,
+    public Libro(String titulo, Long isbn, String anioDeEdicion, Integer cantidad, Integer condicion,
                  Collection<Autor> autores) {
         this.titulo = titulo;
         this.isbn = isbn;
@@ -75,11 +74,11 @@ public class Libro {
         this.isbn = isbn;
     }
 
-    public Integer getAnioDeEdicion() {
+    public String getAnioDeEdicion() {
         return anioDeEdicion;
     }
 
-    public void setAnioDeEdicion(Integer anioDeEdicion) {
+    public void setAnioDeEdicion(String anioDeEdicion) {
         this.anioDeEdicion = anioDeEdicion;
     }
 
@@ -91,11 +90,11 @@ public class Libro {
         this.cantidad = cantidad;
     }
 
-    public String getCondicion() {
+    public Integer getCondicion() {
         return condicion;
     }
 
-    public void setCondicion(String condicion) {
+    public void setCondicion(Integer condicion) {
         this.condicion = condicion;
     }
 
@@ -106,5 +105,4 @@ public class Libro {
     public void setAutores(Collection<Autor> autores) {
         this.autores = autores;
     }
-
 }

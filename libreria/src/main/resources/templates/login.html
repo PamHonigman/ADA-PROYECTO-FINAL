@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio de Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/5c6dd94472.js" crossorigin="anonymous"></script>
+</head>
+
+<body style="background-image: url('https://images.unsplash.com/photo-1684347417078-ae5716d0d745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80 - otra: https://images.unsplash.com/photo-1684347417228-5d3c35df377d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');
+ background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container justify-content-center">
+        <a class="navbar-brand" href="#">-&nbsp;<i class="bi bi-bookshelf"></i>
+            Sistema de Administración de Bibliotecas -</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<br>
+<div class="row justify-content-center">
+    <div class="col-sm-4">
+        <div th:if="${param.error}">
+            <div class="alert alert-danger alert-dismissible" align="center">Usuario o contraseña inválidos
+                <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+        <div th:if="${param.logout}">
+            <div class="alert alert-info alert-dismissible" align="center">Cerraste tu sesión. Hasta la próxima!
+                <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+        <div class="card">
+            <br>
+            <h3 class="card-title text-center mb-4">Inicio de sesión requerido</h3>
+            <form th:action="@{/login}" method="post" class="mx-3">
+                <div class="form-group mb-3">
+                    <label class="control-label mb-1" for="username"><i>Usuario</i></label>
+                    <input id="username" name="username" type="email" class="form-control" required
+                           autofocus="autofocus" placeholder="Ingrese su correo electrónico">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="control-label mb-1" for="password"><i>Password</i></label>
+                    <input id="password" name="password" type="password" class="form-control" required
+                           autofocus="autofocus" placeholder="Ingrese su contraseña">
+                </div>
+
+                <div class="form-group mb-4">
+                    <input type="submit" class="form-control btn btn-primary" id="login-submit" value="Iniciar sesión"/>
+                </div>
+            </form>
+            <div class="form-group mb-4" align="center">
+                <span>¿No tienes una cuenta? <a th:href="@{/registro}">Regístrate aquí</a></span>
+            </div>
+        </div>
+    </div>
+
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous">
+    </script>
+</div>
+
+
+
+
+</body>
+</html>

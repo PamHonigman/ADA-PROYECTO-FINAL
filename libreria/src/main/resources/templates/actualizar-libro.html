@@ -87,7 +87,7 @@
                 Editar Libro&nbsp;<i class="bi bi-book"></i>&nbsp;<i class="bi bi-stars"></i></h4>
         </div>
 
-        <form class="row g-3" th:action="@{/libros/guardar}" th:object="${libro}" method="post">
+        <form class="row g-3" th:action="@{/libros/editar/{id}" th:object="${libro}" method="post">
             <div class="col-12">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
@@ -123,13 +123,20 @@
                 <div th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"
                      class="invalid-feedback"></div>
             </div>
+
             <div class="col-md-6">
-                <label for="anio" class="form-label">Año de Edición</label>
-                <input type="text" class="form-control" id="anio" th:field="*{anioDeEdicion}"
-                       th:errorClass="is-invalid" required>
-                <div th:if="${#fields.hasErrors('anioDeEdicion')}" th:errors="*{anioDeEdicion}"
-                     class="invalid-feedback"></div>
+                <label for="anioEdicion" class="form-label">Año de Edición</label>
+                <select th:field="*{anioDeEdicion}" id="anioEdicion" name="anioDeEdicion" class="form-select" required>
+                    <option selected value="">Seleccione una opción</option>
+                    <option selected value="Desconocido">Desconocido</option>
+                    <option
+                            th:each="anio : ${#numbers.sequence(T(java.time.LocalDate).now().getYear() - 123, T(java.time.LocalDate).now().getYear())}"
+                            th:value="${anio}"
+                            th:text="${anio}"
+                            th:selected="${anio == T(java.time.LocalDate).now().getYear()}"></option>
+                </select>
             </div>
+
             <div class="col-md-6">
                 <label for="cantidad" class="form-label">Cantidad de Ejemplares</label>
                 <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}"
