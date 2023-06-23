@@ -12,7 +12,6 @@ public class Usuario {
     private Long id;
     private String nombre;
     private String apellido;
-    private Long telefono;
     private String email;
     private String password;
 
@@ -27,20 +26,20 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombre, String apellido, Long telefono, String email, String password, Collection<Rol> roles) {
+    public Usuario(Long id, String nombre, String apellido, String email, String password,
+                   Collection<Rol> roles) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.telefono = telefono;
         this.email = email;
         this.password = password;
         this.roles = roles;
     }
 
-    public Usuario(String nombre, String apellido, Long telefono, String email, String password, Collection<Rol> roles) {
+    public Usuario(String nombre, String apellido, String email, String password,
+                   Collection<Rol> roles) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.telefono = telefono;
         this.email = email;
         this.password = password;
         this.roles = roles;
@@ -94,11 +93,4 @@ public class Usuario {
         this.roles = roles;
     }
 
-    public Long getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(Long telefono) {
-        this.telefono = telefono;
-    }
 }

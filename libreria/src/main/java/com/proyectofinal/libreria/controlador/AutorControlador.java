@@ -2,6 +2,7 @@ package com.proyectofinal.libreria.controlador;
 
 import com.proyectofinal.libreria.modelo.Autor;
 import com.proyectofinal.libreria.servicio.AutorServicio;
+import com.proyectofinal.libreria.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,13 @@ public class AutorControlador {
 
     @Autowired
     private AutorServicio autorServicio;
+
+    private UsuarioServicio usuarioServicio;
+
+    @GetMapping("/login")
+    public String iniciarSesion(){
+        return "login";
+    }
 
     @GetMapping("/")
     public String home(){
@@ -102,6 +110,7 @@ public class AutorControlador {
     public String prueba(){
         return "prueba";
     }
+
 
 
 

@@ -12,9 +12,6 @@ public class UsuarioRegistroDTO {
     @NotBlank(message = "Debe ingresar su apellido")
     private String apellido;
 
-    @NotNull(message = "Debe ingresar un teléfono de contacto")
-    private String telefono;
-
     @NotBlank(message = "Debe ingresar un correo electrónico")
     private String email;
 
@@ -26,19 +23,17 @@ public class UsuarioRegistroDTO {
     public UsuarioRegistroDTO() {
     }
 
-    public UsuarioRegistroDTO(Long id, String nombre, String apellido, String telefono, String email, String password) {
+    public UsuarioRegistroDTO(Long id, String nombre, String apellido, String email, String password) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.telefono = telefono;
         this.email = email;
         this.password = password;
     }
 
-    public UsuarioRegistroDTO(String nombre, String apellido, String telefono, String email, String password) {
+    public UsuarioRegistroDTO(String nombre, String apellido, String email, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.telefono = telefono;
         this.email = email;
         this.password = password;
     }
@@ -69,14 +64,6 @@ public class UsuarioRegistroDTO {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 
     public String getEmail() {
