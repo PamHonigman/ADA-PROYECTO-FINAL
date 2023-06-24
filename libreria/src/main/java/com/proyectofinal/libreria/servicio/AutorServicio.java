@@ -16,4 +16,6 @@ public interface AutorServicio {
 
     public void eliminarAutor(Autor autor);
 
+    List<Autor> buscarPorPalabraClave(String palabraClave);
+
 }

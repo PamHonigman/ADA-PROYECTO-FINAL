@@ -38,4 +38,9 @@ public class ImplAutorServicio implements AutorServicio{
     public void eliminarAutor(Autor autor) {
         autorRepositorio.delete(autor);
     }
+
+    @Override
+    public List<Autor> buscarPorPalabraClave(String palabraClave) {
+        return autorRepositorio.buscarPorPalabraClave(palabraClave);
+    }
 }

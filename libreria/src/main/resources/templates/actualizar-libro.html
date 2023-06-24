@@ -87,7 +87,7 @@
                 Editar Libro&nbsp;<i class="bi bi-book"></i>&nbsp;<i class="bi bi-stars"></i></h4>
         </div>
 
-        <form class="row g-3" th:action="@{/libros/editar/{id}" th:object="${libro}" method="post">
+        <form class="row g-3" th:action="@{/libros/editar/{id}(id=${libro.id})}" th:object="${libro}" method="post">
             <div class="col-12">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
@@ -150,9 +150,9 @@
             </div>
 
             <div class="text-end pt-4 mb-3">
-                <button class="btn btn-success text-dark">Guardar
+                <button class="btn btn-success text-dark">Guardar cambios
                     <i class="fa-solid fa-user-check"></i></button>
-                <a th:href="@{/libros}" class="btn btn-danger text-dark">Cancelar
+                <a th:href="@{/libros}" class="btn btn-danger text-dark">Descartar cambios
                     &nbsp;<i class="fa-solid fa-xmark"></i></a>
             </div>
         </form>

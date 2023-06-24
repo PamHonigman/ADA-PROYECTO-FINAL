@@ -16,4 +16,5 @@ public interface LibroServicio {
 
     public void eliminarLibro(Libro libro);
 
+    List<Libro> buscarPorPalabraClave(String palabraClave);
 }

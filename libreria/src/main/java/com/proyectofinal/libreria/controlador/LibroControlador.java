@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class LibroControlador {
     }
 
     @GetMapping("/libros/nuevo")
-    public String mostrarFormularioRegsitrarLibro(Model modelo){
+    public String mostrarFormularioRegistrarLibro(Model modelo){
         Libro libro = new Libro();
         List<Autor> listaAutores = autorServicio.listarTodosLosAutores();
 
@@ -104,6 +105,17 @@ public class LibroControlador {
         redirect.addFlashAttribute("msgExito", "Libro eliminado exitosamente!");
 
         return "redirect:/libros";
+    }
+
+    @GetMapping("/search")
+    public String buscar(@RequestParam("palabraClave") String palabraClave, Model model) {
+        List<Libro> libros = libroServicio.buscarPorPalabraClave(palabraClave);
+        List<Autor> autores = autorServicio.buscarPorPalabraClave(palabraClave);
+
+        model.addAttribute("libros", libros);
+        model.addAttribute("autores", autores);
+
+        return "search";
     }
 }
 

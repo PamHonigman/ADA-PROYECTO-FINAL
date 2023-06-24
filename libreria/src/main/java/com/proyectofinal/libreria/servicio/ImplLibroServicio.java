@@ -37,4 +37,9 @@ public class ImplLibroServicio implements LibroServicio {
     public void eliminarLibro(Libro libro) {
         libroRepositorio.delete(libro);
     }
+
+    @Override
+    public List<Libro> buscarPorPalabraClave(String palabraClave) {
+        return libroRepositorio.buscarPorPalabraClave(palabraClave);
+    }
 }
