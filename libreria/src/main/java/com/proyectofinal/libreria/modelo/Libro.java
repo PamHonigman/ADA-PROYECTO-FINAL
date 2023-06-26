@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="libros")
@@ -27,6 +28,8 @@ public class Libro {
     )
     private Collection<Autor> autores;
 
+    @ManyToMany(mappedBy = "librosPrestados")
+    private List<Socio> socios;
     public Libro(){}
 
     public Libro(Long id, String titulo, Long isbn, String anioDeEdicion, Integer cantidad,
@@ -38,6 +41,17 @@ public class Libro {
         this.cantidad = cantidad;
         this.condicion = condicion;
         this.autores = autores;
+    }
+
+    public Libro(Long id, String titulo, Long isbn, String anioDeEdicion, Integer cantidad, Integer condicion, Collection<Autor> autores, List<Socio> socios) {
+        this.id = id;
+        this.titulo = titulo;
+        this.isbn = isbn;
+        this.anioDeEdicion = anioDeEdicion;
+        this.cantidad = cantidad;
+        this.condicion = condicion;
+        this.autores = autores;
+        this.socios = socios;
     }
 
     public Libro(String titulo, Long isbn, String anioDeEdicion, Integer cantidad, Integer condicion,
@@ -104,5 +118,10 @@ public class Libro {
 
     public void setAutores(Collection<Autor> autores) {
         this.autores = autores;
+    }
+
+    @Override
+    public String toString() {
+        return titulo + " " + autores.toString();
     }
 }
