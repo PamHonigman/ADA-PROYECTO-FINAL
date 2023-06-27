@@ -37,4 +37,10 @@ public class ImplSocioServicio implements SocioServicio{
     public void eliminarSocio(Socio socio) {
         socioRepositorio.delete(socio);
     }
+
+    @Override
+    public List<Socio> buscarSocio(String keyword) {
+        return socioRepositorio.buscarSocio(keyword);
+    }
+
 }

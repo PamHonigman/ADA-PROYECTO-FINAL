@@ -102,4 +102,9 @@ public class Socio {
     public void setLibrosPrestados(Collection<Libro> librosPrestados) {
         this.librosPrestados = librosPrestados;
     }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido + " (Nro. " + id + ")";
+    }
 }

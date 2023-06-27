@@ -92,12 +92,20 @@
     <br>
 
     <h2 style="text-align:center"
-        class="p-3 mb-2 bg-primary bg-gradient text-dark border rounded"><bold>
-        Socios Registrados</bold>&nbsp;<i class="bi bi-stars"></i><i class="bi bi-vector-pen"></i></h2>
+        class="p-3 mb-3 bg-primary bg-gradient text-dark border rounded"><bold>
+        Socios Registrados</bold>&nbsp;<i class="fa-regular fa-id-card"></i><i class="bi bi-stars"></i></h2>
 
-    <div class="text-center my-3">
+    <div class="row row-cols-lg-auto justify-content-center g-4 mb-3">
         <a th:href="@{/socios/nuevo}" class="btn btn-light btn-lg"><i class="bi bi-person-plus"></i>&nbsp;
             Nuevo Socio</a>
+
+        <form class="d-flex" th:action="@{/search/socios}" role="search">
+            <input class="form-control me-1 border border-dark" type="search" name="keyword" id = "keyword" th:value =
+                    "${keyword}" placeholder="Buscar Socios" aria-label="Buscar">
+            <button class="btn btn-dark" type="submit"
+                    th:href="@{/search/socios}"><i class="bi bi-search"></i></button>
+        </form>
+
     </div>
 
     <table class="table table-light table-striped table-hover">
@@ -108,7 +116,7 @@
                 <th scope="col">Apellido/s</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Tel. de Contacto</th>
-                <th scope="col">Libros Actuales</th>
+                <th scope="col">Préstamos</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
@@ -125,7 +133,7 @@
                         <a class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu2"
                            data-bs-toggle="dropdown" aria-expanded="false">Ver</a>
 
-                        <ul class="dropdown-menu p-3" style="width: 400px;">
+                        <ul class="dropdown-menu p-3" style="width: 500px;">
                             <li>
                                 <span class="dropdown-item-text" th:each="libro, iterStat : ${socio.librosPrestados}">
 						            <span th:text="${libro.toString}"></span>

@@ -16,6 +16,8 @@ public interface SocioServicio {
 
     public void eliminarSocio(Socio socio);
 
+    List<Socio> buscarSocio(String keyword);
+
 }
 
 

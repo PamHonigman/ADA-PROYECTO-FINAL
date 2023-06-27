@@ -120,8 +120,16 @@ public class Libro {
         this.autores = autores;
     }
 
+    public List<Socio> getSocios() {
+        return socios;
+    }
+
+    public void setSocios(List<Socio> socios) {
+        this.socios = socios;
+    }
+
     @Override
     public String toString() {
-        return titulo + " " + autores.toString();
+        return titulo + " " + autores.toString() + " - " + anioDeEdicion;
     }
 }

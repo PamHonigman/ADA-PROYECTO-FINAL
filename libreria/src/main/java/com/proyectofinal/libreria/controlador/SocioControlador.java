@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collection;
@@ -108,6 +109,12 @@ public class SocioControlador {
         return "redirect:/socios";
     }
 
+    @GetMapping("/search/socios")
+    public String buscarSocio(@RequestParam("keyword") String keyword, Model model) {
+        List<Socio> socios = socioServicio.buscarSocio(keyword);
 
+        model.addAttribute("socios", socios);
 
+        return "search-socios";
+    }
 }
