@@ -112,8 +112,13 @@ public class LibroControlador {
         List<Libro> libros = libroServicio.buscarPorPalabraClave(palabraClave);
         List<Autor> autores = autorServicio.buscarPorPalabraClave(palabraClave);
 
-        model.addAttribute("libros", libros);
-        model.addAttribute("autores", autores);
+        if (libros.isEmpty() && autores.isEmpty()) {
+            model.addAttribute("mensajeError", "No se encontraron resultados para \"" + palabraClave + "\"");
+        }   else {
+            model.addAttribute("mensajeOk", "Resultados para la búsqueda de: \"" + palabraClave + "\"");
+            model.addAttribute("libros", libros);
+            model.addAttribute("autores", autores);
+        }
 
         return "search";
     }

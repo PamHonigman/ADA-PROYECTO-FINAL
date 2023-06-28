@@ -105,6 +105,7 @@ public class Socio {
 
     @Override
     public String toString() {
-        return nombre + " " + apellido + " (Nro. " + id + ")";
+
+        return nombre + " " + apellido + " (Nro. " + String.format("%06d", id) + ")";
     }
 }

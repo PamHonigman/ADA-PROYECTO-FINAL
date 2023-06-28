@@ -46,14 +46,14 @@
                         <li><a class="dropdown-item" th:href="@{/libros/nuevo}" onclick="mostrarAlertaAñadirLibro(event)">Libro</a></li>
                         <li><a class="dropdown-item" th:href="@{/autores/nuevo}">Autor</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Socio</a></li>
+                        <li><a class="dropdown-item" th:href="@{/socios/nuevo}">Socio</a></li>
                     </ul>
                 </li>
 
                 <form class="row g-2 mb-1 " style="padding-left: 20px;" th:action="@{/search}" role="search">
                     <div class="form-group col-auto">
                         <input class="form-control me-1" type="text" name="palabraClave" id = "palabraClave" th:value =
-                                "${palabraClave}" placeholder="Buscar" required>
+                                "${palabraClave}" placeholder="Buscar Autor o Libro" required>
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-outline-light" type="submit"
@@ -93,7 +93,7 @@
 
     <h2 style="text-align:center"
         class="p-3 mb-3 bg-primary bg-gradient text-dark border rounded"><bold>
-        Socios Registrados</bold>&nbsp;<i class="fa-regular fa-id-card"></i><i class="bi bi-stars"></i></h2>
+        Socios Registrados</bold>&nbsp;<i class="bi bi-stars"></i><i class="fa-regular fa-address-card"></i></h2>
 
     <div class="row row-cols-lg-auto justify-content-center g-4 mb-3">
         <a th:href="@{/socios/nuevo}" class="btn btn-light btn-lg"><i class="bi bi-person-plus"></i>&nbsp;
@@ -123,17 +123,18 @@
 
         <tbody class="table-striped">
             <tr th:each="socio: ${socios}">
-                <td th:text="${socio.id}"></td>
+                <td th:text="${#numbers.formatInteger(socio.id,6)}"></td>
                 <td th:text="${socio.nombre}"></td>
                 <td th:text="${socio.apellido}"></td>
                 <td th:text="${socio.dni}"></td>
                 <td th:text="${socio.telefono}"></td>
                 <td>
                     <div class="dropdown">
-                        <a class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu2"
-                           data-bs-toggle="dropdown" aria-expanded="false">Ver</a>
+                        <a class="btn btn-sm dropdown-toggle text-white" type="button" id="dropdownMenu2"
+                           data-bs-toggle="dropdown" aria-expanded="false"
+                           style="background-color: #6610f2;">Ver</a>
 
-                        <ul class="dropdown-menu p-3" style="width: 500px;">
+                        <ul class="dropdown-menu p-2" style="width: 500px; background-color: #e3f2fd;">
                             <li>
                                 <span class="dropdown-item-text" th:each="libro, iterStat : ${socio.librosPrestados}">
 						            <span th:text="${libro.toString}"></span>

@@ -105,21 +105,4 @@ public class AutorControlador {
 
         return "redirect:/autores";
     }
-
-    @GetMapping("/try")
-    public String prueba(){
-        return "prueba";
-    }
-
-
-
-
-
-
-
-
-
-
-
-
 }

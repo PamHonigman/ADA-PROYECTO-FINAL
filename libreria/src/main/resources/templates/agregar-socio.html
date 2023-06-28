@@ -33,7 +33,7 @@
                         <li><a class="dropdown-item" th:href="@{/libros}">Listado de Libros</a></li>
                         <li><a class="dropdown-item" th:href="@{/autores}">Listado de Autores</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Socios Registrados</a></li>
+                        <li><a class="dropdown-item" th:href="@{/socios}">Socios Registrados</a></li>
                     </ul>
                 </li>
 
@@ -44,7 +44,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" th:href="@{/libros/nuevo}" onclick="mostrarAlertaAñadirLibro(event)">Libro</a></li>
-                        <li><a class="dropdown-item" href="#">Autor</a></li>
+                        <li><a class="dropdown-item" th:href="@{/autores/nuevo}">Autor</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Socio</a></li>
                     </ul>
@@ -53,7 +53,7 @@
                 <form class="row g-2 mb-1 " style="padding-left: 20px;" th:action="@{/search}" role="search">
                     <div class="form-group col-auto">
                         <input class="form-control me-1" type="text" name="palabraClave" id = "palabraClave" th:value =
-                                "${palabraClave}" placeholder="Buscar" required>
+                                "${palabraClave}" placeholder="Buscar Autor o Libro" required>
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-outline-light" type="submit"
@@ -84,7 +84,7 @@
     <div class="col-md6 col-lg-6 bg-light border border-secondary border rounded p-4">
         <div class="mb-4">
             <h4 style="text-align:center" class="p-3 mb-1 mt-1 bg-success bg-gradient text-dark border rounded">
-                Nuevo Socio&nbsp;<i class="fa-solid fa-user-pen"></i><i class="bi bi-stars"></i></h4>
+                Nuevo Socio&nbsp;<i class="bi bi-person-bounding-box"></i>&nbsp;<i class="bi bi-stars"></i></h4>
         </div>
     <form class="row g-3" th:action="@{/socios/guardar}" th:object="${socio}" method="post">
         <div class="col-12">

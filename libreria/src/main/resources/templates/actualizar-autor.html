@@ -33,7 +33,7 @@
                         <li><a class="dropdown-item" th:href="@{/libros}">Listado de Libros</a></li>
                         <li><a class="dropdown-item" th:href="@{/autores}">Listado de Autores</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Socios Registrados</a></li>
+                        <li><a class="dropdown-item" th:href="@{/socios}">Socios Registrados</a></li>
                     </ul>
                 </li>
 
@@ -46,14 +46,14 @@
                         <li><a class="dropdown-item" th:href="@{/libros/nuevo}" onclick="mostrarAlertaAñadirLibro(event)">Libro</a></li>
                         <li><a class="dropdown-item" th:href="@{/autores/nuevo}">Autor</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Socio</a></li>
+                        <li><a class="dropdown-item" th:href="@{/socios/nuevo}">Socio</a></li>
                     </ul>
                 </li>
 
                 <form class="row g-2 mb-1 " style="padding-left: 20px;" th:action="@{/search}" role="search">
                     <div class="form-group col-auto">
                         <input class="form-control me-1" type="text" name="palabraClave" id = "palabraClave" th:value =
-                                "${palabraClave}" placeholder="Buscar" required>
+                                "${palabraClave}" placeholder="Buscar Autor o Libro" required>
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-outline-light" type="submit"

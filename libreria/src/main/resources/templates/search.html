@@ -32,7 +32,7 @@
                         <li><a class="dropdown-item" th:href="@{/libros}">Listado de Libros</a></li>
                         <li><a class="dropdown-item" th:href="@{/autores}">Listado de Autores</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Socios Registrados</a></li>
+                        <li><a class="dropdown-item" th:href="@{/socios}">Socios Registrados</a></li>
                     </ul>
                 </li>
 
@@ -45,14 +45,14 @@
                         <li><a class="dropdown-item" th:href="@{/libros/nuevo}" onclick="mostrarAlertaAñadirLibro(event)">Libro</a></li>
                         <li><a class="dropdown-item" th:href="@{/autores/nuevo}">Autor</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Socio</a></li>
+                        <li><a class="dropdown-item" th:href="@{/socios/nuevo}">Socio</a></li>
                     </ul>
                 </li>
 
                 <form class="row g-2 mb-1 " style="padding-left: 20px;" th:action="@{/search}" role="search">
                     <div class="form-group col-auto">
                         <input class="form-control me-1" type="text" name="palabraClave" id = "palabraClave" th:value =
-                                "${palabraClave}" placeholder="Buscar" required>
+                                "${palabraClave}" placeholder="Buscar Autor o Libro" required>
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-outline-light" type="submit"
@@ -78,14 +78,14 @@
 </nav>
 
 <br>
+
 <div class="container">
-    <div th:if="${msgExito != null}" class="alert alert-success alert-dismissible fade show" role="alert">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-             class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-        </svg>
-        &nbsp;[[${msgExito}]]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div th:if="${mensajeError}" class="alert alert-danger text-center">
+        <h5 th:text="${mensajeError}"></h5>
+    </div>
+
+    <div th:if="${mensajeOk}" class="alert alert-secondary text-center">
+        <h5 th:text="${mensajeOk}"></h5>
     </div>
 
     <br>
@@ -99,10 +99,10 @@
         <thead class="table-primary">
         <tr>
             <th scope="col">Título</th>
-            <th scope="col">Autor</th>
-            <th scope="col">Año de edición</th>
+            <th scope="col">Autor/es</th>
+            <th scope="col">Año de Edición</th>
             <th scope="col">ISBN</th>
-            <th scope="col">Cant. Ejemplares</th>
+            <th scope="col">Stock</th>
             <th scope="col">Prestados</th>
             <th scope="col">Opciones</th>
         </tr>
@@ -120,7 +120,28 @@
             <td th:text="${libro.anioDeEdicion}"></td>
             <td th:text="${libro.isbn}"></td>
             <td th:text="${libro.cantidad}"></td>
-            <td th:text="${libro.condicion}"></td>
+            <td>
+                <div class="dropdown">
+                    <a class="btn btn-sm dropdown-toggle position-relative text-white" type="button"
+                       id="dropdownMenu2" style="background-color: #6610f2;"
+                       data-bs-toggle="dropdown" aria-expanded="false">Socios
+                        <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info text-dark">
+                            <span th:text="${libro.condicion}"></span>
+                        </span>
+                    </a>
+
+                    <ul class="dropdown-menu p-2" style="width: 500px; background-color: #e3f2fd;">
+                        <li>
+                                <span class="dropdown-item-text" th:each="socio, iterStat : ${libro.socios}">
+						            <span th:text="${socio.toString}"></span>
+						            <span th:if="${iterStat.last} == false"></span>
+					            </span>
+                        </li>
+
+                    </ul>
+                </div>
+            </td>
             <td>
                 <a th:href="@{/libros/editar/}+${libro.id}" class="btn btn-info btn-sm"><i
                         class="bi bi-pencil-square"></i>&nbsp;Editar</a>

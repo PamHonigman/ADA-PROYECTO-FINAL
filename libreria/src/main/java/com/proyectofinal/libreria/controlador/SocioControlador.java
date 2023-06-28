@@ -113,7 +113,12 @@ public class SocioControlador {
     public String buscarSocio(@RequestParam("keyword") String keyword, Model model) {
         List<Socio> socios = socioServicio.buscarSocio(keyword);
 
-        model.addAttribute("socios", socios);
+        if (socios.isEmpty()) {
+            model.addAttribute("mensajeError", "No se encontraron resultados para \"" + keyword + "\"");
+        }   else {
+            model.addAttribute("mensajeOk", "Resultados para la búsqueda de: \"" + keyword + "\"");
+            model.addAttribute("socios", socios);
+        }
 
         return "search-socios";
     }
