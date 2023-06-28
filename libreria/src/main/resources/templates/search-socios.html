@@ -88,13 +88,11 @@
         <h5 th:text="${mensajeOk}"></h5>
     </div>
 
-    <br>
+    <div class="row row-cols-lg-auto justify-content-center g-3 mb-3">
+        <div>
+            <a th:href="@{/socios}" class="btn btn-dark" >Volver al listado de Socios</a>
+        </div>
 
-    <h2 style="text-align:center"
-        class="p-3 mb-3 bg-primary bg-gradient text-dark border rounded"><bold>
-        Socios Encontrados</bold>&nbsp;<i class="fa-regular fa-id-card"></i><i class="bi bi-stars"></i></h2>
-
-    <div class="row row-cols-lg-auto justify-content-center g-4 mb-3">
         <form class="d-flex" th:action="@{/search/socios}" role="search">
             <input class="form-control me-1 border border-dark" type="search" name="keyword" id = "keyword" th:value =
                     "${keyword}" placeholder="Realizar otra búsqueda" aria-label="Buscar">
@@ -103,6 +101,12 @@
         </form>
 
     </div>
+
+    <h2 style="text-align:center"
+        class="p-3 mb-3 bg-primary bg-gradient text-dark border rounded"><bold>
+        Socios Encontrados</bold>&nbsp;<i class="fa-regular fa-id-card"></i><i class="bi bi-stars"></i></h2>
+
+
 
     <table class="table table-light table-striped table-hover">
         <thead class="table-primary">
@@ -145,7 +149,7 @@
                     <a th:href="@{/socios/editar/}+${socio.id}" class="btn btn-info btn-sm"><i
                             class="bi bi-pencil-square"></i>&nbsp;Editar</a>
 
-                    <a href="#" onclick="mostrarAlerta(this)" class="btn btn-secondary btn-sm"><i
+                    <a href="#" onclick="mostrarAlertaEliminarSocio(this)" class="btn btn-secondary btn-sm"><i
                             class="bi bi-trash3"></i></a>
                     <form th:action="@{/socios/eliminar/{id}(id=${socio.id})}" method="post"
                           id="deleteForm"></form>
@@ -158,29 +162,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous">
-</script>
-
-<script th:inline="javascript">
-        function mostrarAlerta(elemento) {
-            swal({
-                title: "¿Está seguro?",
-                text: "Esta acción no se puede deshacer",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    var form = elemento.nextElementSibling;
-                    form.submit();
-                    swal("Registro eliminado exitosamente!", {
-                    icon: "success",
-                    });
-                } else {
-                    swal("Ningún registro fue eliminado");
-                }
-            });
-        }
 </script>
 
 <script th:inline="javascript">
@@ -200,6 +181,30 @@
             }
         });
     }
+</script>
+
+<script th:inline="javascript">
+        function mostrarAlertaEliminarSocio(elemento) {
+            swal({
+                title: "¡Atención!",
+                text: "No es posible eliminar un Socio sin aún no devolvió todos sus préstamos. Si " +
+                 "ya fueron devueltos, presione OK, de lo contrario, Cancelar",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    var form = elemento.nextElementSibling;
+                    form.submit();
+                    swal("Registro eliminado exitosamente!", {
+                    icon: "success",
+                    });
+                } else {
+                    swal("Puede verificar los préstamos vigentes de un Socio en el listado de Socios Registrados");
+                }
+            });
+        }
 </script>
 
 </body>

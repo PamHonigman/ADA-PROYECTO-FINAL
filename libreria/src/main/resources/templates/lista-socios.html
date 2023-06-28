@@ -148,7 +148,7 @@
                     <a th:href="@{/socios/editar/}+${socio.id}" class="btn btn-info btn-sm"><i
                             class="bi bi-pencil-square"></i>&nbsp;Editar</a>
 
-                    <a href="#" onclick="mostrarAlerta(this)" class="btn btn-secondary btn-sm"><i
+                    <a href="#" onclick="mostrarAlertaEliminarSocio(this)" class="btn btn-secondary btn-sm"><i
                             class="bi bi-trash3"></i></a>
                     <form th:action="@{/socios/eliminar/{id}(id=${socio.id})}" method="post"
                           id="deleteForm"></form>
@@ -164,10 +164,11 @@
 </script>
 
 <script th:inline="javascript">
-        function mostrarAlerta(elemento) {
+        function mostrarAlertaEliminarSocio(elemento) {
             swal({
-                title: "¿Está seguro?",
-                text: "Esta acción no se puede deshacer",
+                title: "¡Atención!",
+                text: "No es posible eliminar un Socio sin aún no devolvió todos sus préstamos. Si " +
+                 "ya fueron devueltos, presione OK, de lo contrario, Cancelar",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -180,7 +181,7 @@
                     icon: "success",
                     });
                 } else {
-                    swal("Ningún registro fue eliminado");
+                    swal("Puede verificar los préstamos vigentes de un Socio en el listado de Socios Registrados");
                 }
             });
         }
