@@ -26,14 +26,14 @@ public class Libro {
             joinColumns = @JoinColumn(name = "libros_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "autores_id", referencedColumnName = "id")
     )
-    private Collection<Autor> autores;
+    private List<Autor> autores;
 
     @ManyToMany(mappedBy = "librosPrestados")
     private List<Socio> socios;
     public Libro(){}
 
     public Libro(Long id, String titulo, Long isbn, String anioDeEdicion, Integer cantidad,
-                 Integer condicion, Collection<Autor> autores) {
+                 Integer condicion, List<Autor> autores) {
         this.id = id;
         this.titulo = titulo;
         this.isbn = isbn;
@@ -43,7 +43,8 @@ public class Libro {
         this.autores = autores;
     }
 
-    public Libro(Long id, String titulo, Long isbn, String anioDeEdicion, Integer cantidad, Integer condicion, Collection<Autor> autores, List<Socio> socios) {
+    public Libro(Long id, String titulo, Long isbn, String anioDeEdicion, Integer cantidad, Integer condicion,
+                 List<Autor> autores, List<Socio> socios) {
         this.id = id;
         this.titulo = titulo;
         this.isbn = isbn;
@@ -55,7 +56,7 @@ public class Libro {
     }
 
     public Libro(String titulo, Long isbn, String anioDeEdicion, Integer cantidad, Integer condicion,
-                 Collection<Autor> autores) {
+                 List<Autor> autores) {
         this.titulo = titulo;
         this.isbn = isbn;
         this.anioDeEdicion = anioDeEdicion;
@@ -112,11 +113,11 @@ public class Libro {
         this.condicion = condicion;
     }
 
-    public Collection<Autor> getAutores() {
+    public List<Autor> getAutores() {
         return autores;
     }
 
-    public void setAutores(Collection<Autor> autores) {
+    public void setAutores(List<Autor> autores) {
         this.autores = autores;
     }
 

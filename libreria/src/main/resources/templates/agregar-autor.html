@@ -126,24 +126,8 @@
         crossorigin="anonymous">
 </script>
 
-<script th:inline="javascript">
-    function mostrarAlertaAñadirLibro(event) {
-        event.preventDefault();
-        swal({
-            title: "¡Atención!",
-            text: "Antes de añadir un libro, debe haber registrado su autor previamente",
-            icon: "warning",
-            buttons: {
-                cancel: "Cancelar",
-                confirm: "Continuar"
-            },
-        }).then((value) => {
-            if (value) {
-                window.location.href = '/libros/nuevo';
-            }
-        });
-    }
-</script>
+<script src="/sweetAlerts.js"></script>
+
 
 </body>
 </html>

@@ -83,7 +83,7 @@
 <div class="row justify-content-center">
     <div class="col-md6 col-lg-6 bg-light border border-secondary border rounded p-4">
         <div class="mb-4">
-            <h4 style="text-align:center" class="p-3 mb-1 mt-1 bg-warning bg-gradient text-dark border rounded">
+            <h4 style="text-align:center; background-color: #fd7e14;" class="p-3 mb-1 mt-1 bg-gradient text-dark border rounded">
                 Editar Libro&nbsp;<i class="bi bi-book"></i>&nbsp;<i class="bi bi-stars"></i></h4>
         </div>
 
@@ -95,7 +95,7 @@
 
             <div class="col-md-6">
                 <label for= "autor" class="form-label">Autor</label>
-                <select th:field="*{autores}" id="autor" class="form-select" required>
+                <select th:field="*{autores[0]}" id="autor" class="form-select" required>
                     <option selected value="">Seleccione una opción del listado</option>
                     <option th:each="autor : ${autores}" th:text="${autor.toString}"
                             th:value="${autor.id}"></option>
@@ -104,14 +104,14 @@
 
             <div class="col-md-6">
                 <label for= "autor2" class="form-label">Autor 2</label>
-                <select th:field="*{autores}" id="autor2" class="form-select">
+                <select th:field="*{autores[1]}" id="autor2" class="form-select">
                     <option selected value="">Seleccione una opción del listado</option>
                     <option th:each="autor : ${autores}" th:text="${autor.toString}"
                             th:value="${autor.id}"></option>
                 </select>
             </div>
 
-            <span class="text-warning mb-1">
+            <span class="text mb-1" style="color: #fd7e14;">
                 <small><i>En caso de que tenga más de 2 autores, seleccione la opción
                 'Antología'</i></small>
             </span>
@@ -165,24 +165,8 @@
         crossorigin="anonymous">
 </script>
 
-<script th:inline="javascript">
-    function mostrarAlertaAñadirLibro(event) {
-        event.preventDefault();
-        swal({
-            title: "¡Atención!",
-            text: "Antes de añadir un libro, debe haber registrado su autor previamente",
-            icon: "warning",
-            buttons: {
-                cancel: "Cancelar",
-                confirm: "Continuar"
-            },
-        }).then((value) => {
-            if (value) {
-                window.location.href = '/libros/nuevo';
-            }
-        });
-    }
-</script>
+<script src="/sweetAlerts.js"></script>
+
 
 </body>
 </html>

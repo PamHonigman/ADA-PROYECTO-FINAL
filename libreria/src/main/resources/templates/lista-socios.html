@@ -95,8 +95,9 @@
         class="p-3 mb-3 bg-primary bg-gradient text-dark border rounded"><bold>
         Socios Registrados</bold>&nbsp;<i class="bi bi-stars"></i><i class="fa-regular fa-address-card"></i></h2>
 
+
     <div class="row row-cols-lg-auto justify-content-center g-4 mb-3">
-        <a th:href="@{/socios/nuevo}" class="btn btn-light btn-lg"><i class="bi bi-person-plus"></i>&nbsp;
+        <a th:href="@{/socios/nuevo}" class="btn btn-dark btn-lg"><i class="bi bi-person-plus"></i>&nbsp;
             Nuevo Socio</a>
 
         <form class="d-flex" th:action="@{/search/socios}" role="search">
@@ -145,11 +146,11 @@
                     </div>
                 </td>
                 <td>
-                    <a th:href="@{/socios/editar/}+${socio.id}" class="btn btn-info btn-sm"><i
-                            class="bi bi-pencil-square"></i>&nbsp;Editar</a>
+                    <a th:href="@{/socios/editar/}+${socio.id}" class="btn btn-sm text-white" style="background-color: #6f42c1;" data-bs-toggle="tooltip"
+                       data-bs-placement="top" title="Editar"><i class="bi bi-pencil-square"></i></a>
 
-                    <a href="#" onclick="mostrarAlertaEliminarSocio(this)" class="btn btn-secondary btn-sm"><i
-                            class="bi bi-trash3"></i></a>
+                    <a href="#" onclick="mostrarAlertaEliminar(this)" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip"
+                       data-bs-placement="top" title="Eliminar"><i class="bi bi-trash3"></i></a>
                     <form th:action="@{/socios/eliminar/{id}(id=${socio.id})}" method="post"
                           id="deleteForm"></form>
                 </td>
@@ -163,48 +164,7 @@
         crossorigin="anonymous">
 </script>
 
-<script th:inline="javascript">
-        function mostrarAlertaEliminarSocio(elemento) {
-            swal({
-                title: "¡Atención!",
-                text: "No es posible eliminar un Socio sin aún no devolvió todos sus préstamos. Si " +
-                 "ya fueron devueltos, presione OK, de lo contrario, Cancelar",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    var form = elemento.nextElementSibling;
-                    form.submit();
-                    swal("Registro eliminado exitosamente!", {
-                    icon: "success",
-                    });
-                } else {
-                    swal("Puede verificar los préstamos vigentes de un Socio en el listado de Socios Registrados");
-                }
-            });
-        }
-</script>
-
-<script th:inline="javascript">
-    function mostrarAlertaAñadirLibro(event) {
-        event.preventDefault();
-        swal({
-            title: "¡Atención!",
-            text: "Antes de añadir un libro, debe haber registrado su autor previamente",
-            icon: "warning",
-            buttons: {
-                cancel: "Cancelar",
-                confirm: "Continuar"
-            },
-        }).then((value) => {
-            if (value) {
-                window.location.href = '/libros/nuevo';
-            }
-        });
-    }
-</script>
+<script src="/sweetAlerts.js"></script>
 
 </body>
 </html>

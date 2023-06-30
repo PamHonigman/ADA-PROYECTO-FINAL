@@ -2,7 +2,9 @@ package com.proyectofinal.libreria.modelo;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "socios")
@@ -108,4 +110,5 @@ public class Socio {
 
         return nombre + " " + apellido + " (Nro. " + String.format("%06d", id) + ")";
     }
+
 }
